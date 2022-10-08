@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import EpisodesList from "./components/EpisodesList";
+import Header from "./components/Header";
+import SeasonsFilter from "./components/SeaonsFilter";
 
 function App() {
+  const [season, setSeason] = useState(1);
+
+  function filterSeason(season) {
+    setSeason(season);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="container">
+        <SeasonsFilter season={season} filterSeason={filterSeason} />
+        <EpisodesList season={season} />
+      </div>
     </div>
   );
 }
